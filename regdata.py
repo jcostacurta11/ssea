@@ -17,6 +17,25 @@ spotify_df = pd.read_csv('http://raw.githubusercontent.com/jcostacurta11/ssea/ma
 nba_df = pd.read_csv('http://raw.githubusercontent.com/jcostacurta11/ssea/main/nba_data_ssea.csv')
 
 datasets = {
+    "ice_cream": # Dataset id, shown in the selection menu
+    {
+        "text": "Ice Cream example", # Description, shown when selected, LaTeX not supported
+        "axes":
+        {
+            "temperature": # Axis id, shown in the selection menu
+            {
+                "text": "temperature", # Axis title, shown in the graph, LaTeX supported
+                "vec": vec(60, 72, 67, 80), # Data in numpy.array
+                "range": (50, 90) # Plotting range; there are problems in Matplotlib automations
+            },
+            "cones sold":
+            {
+                "text": "cones sold",
+                "vec": vec(64, 75, 70, 80),
+                "range": (60, 90)
+            }
+        }
+    },
     "book1": # Dataset id, shown in the selection menu
     {
         "text": "Example 7.3.2 on the MATH 51 textbook", # Description, shown when selected, LaTeX not supported
