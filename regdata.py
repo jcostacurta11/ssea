@@ -31,7 +31,7 @@ datasets = {
             "cones sold":
             {
                 "text": "cones sold",
-                "vec": vec(64, 75, 70, 80),
+                "vec": vec(63, 76, 70, 80),
                 "range": (60, 90)
             }
         }
