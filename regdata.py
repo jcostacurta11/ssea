@@ -104,5 +104,80 @@ datasets = {
                 "range": (0, 350)
             }
         }
+    },
+    "nyse": # Dataset id, shown in the selection menu
+    {
+        "text": "New York Stock Exchange dataset", # Description, shown when selected, LaTeX not supported
+        "axes":
+        {
+            "PYPL": # Axis id, shown in the selection menu
+            {
+                "text": "PYPL", # Axis title, shown in the graph, LaTeX supported
+                "vec": nyse_df['PYPL'].values, # Data in numpy.array
+                "range": (36, 45) # Plotting range; there are problems in Matplotlib automations
+            },
+            "MSFT":
+            {
+                "text": "MSFT",
+                "vec": nyse_df['MSFT'].values,
+                "range": (56, 64)
+            },
+            "AAPL":
+            {
+                "text": "AAPL",
+                "vec": nyse_df['AAPL'].values,
+                "range": (102, 120)
+            }
+        }
+    },
+    "nba": # Dataset id, shown in the selection menu
+    {
+        "text": "NBA dataset", # Description, shown when selected, LaTeX not supported
+        "axes":
+        {
+            "TOV": # Axis id, shown in the selection menu
+            {
+                "text": "TOV", # Axis title, shown in the graph, LaTeX supported
+                "vec": nba_df['TOV'].values, # Data in numpy.array
+                "range": (0, 3.5) # Plotting range; there are problems in Matplotlib automations
+            },
+            "TRB":
+            {
+                "text": "TRB",
+                "vec": nba_df['TRB'].values,
+                "range": (0, 13)
+            },
+            "PTS":
+            {
+                "text": "PTS",
+                "vec": nba_df['PTS'].values,
+                "range": (0, 30)
+            }
+        }
+    },
+    "spotify": # Dataset id, shown in the selection menu
+    {
+        "text": "Spotify Top 100 Songs dataset", # Description, shown when selected, LaTeX not supported
+        "axes":
+        {
+            "loudness": # Axis id, shown in the selection menu
+            {
+                "text": "loudness", # Axis title, shown in the graph, LaTeX supported
+                "vec": spotify_df['loudness'].values, # Data in numpy.array
+                "range": (-14, -2) # Plotting range; there are problems in Matplotlib automations
+            },
+            "acousticness":
+            {
+                "text": "acousticness",
+                "vec": spotify_df['acousticness'].values,
+                "range": (0, 1)
+            },
+            "energy":
+            {
+                "text": "energy",
+                "vec": spotify_df['energy'].values,
+                "range": (0, 1)
+            }
+        }
     }
 }
