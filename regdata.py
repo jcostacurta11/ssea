@@ -11,6 +11,10 @@ def vec(*args):
         return np.array(args, dtype=np.float64)
 
 concrete_df = pd.read_csv('http://raw.githubusercontent.com/jcostacurta11/ssea/main/concrete_data_ssea.csv')
+diabetes_df = pd.read_csv('http://raw.githubusercontent.com/jcostacurta11/ssea/main/diabetes_data_ssea.csv')
+nyse_df = pd.read_csv('http://raw.githubusercontent.com/jcostacurta11/ssea/main/nyse_data_ssea.csv')
+spotify_df = pd.read_csv('http://raw.githubusercontent.com/jcostacurta11/ssea/main/spotify_data_ssea.csv')
+nba_df = pd.read_csv('http://raw.githubusercontent.com/jcostacurta11/ssea/main/nba_data_ssea.csv')
 
 datasets = {
     "book1": # Dataset id, shown in the selection menu
@@ -73,6 +77,31 @@ datasets = {
                 "text": "strength",
                 "vec": concrete_df['strength'].values,
                 "range": (0, 90)
+            }
+        }
+    },
+    "diabetes": # Dataset id, shown in the selection menu
+    {
+        "text": "Diabetes dataset", # Description, shown when selected, LaTeX not supported
+        "axes":
+        {
+            "ltg": # Axis id, shown in the selection menu
+            {
+                "text": "ltg", # Axis title, shown in the graph, LaTeX supported
+                "vec": diabetes_df['ltg'].values, # Data in numpy.array
+                "range": (3.4, 6.2) # Plotting range; there are problems in Matplotlib automations
+            },
+            "glu":
+            {
+                "text": "glu",
+                "vec": diabetes_df['glu'].values,
+                "range": (68, 125)
+            },
+            "y":
+            {
+                "text": "y",
+                "vec": diabetes_df['y'].values,
+                "range": (0, 350)
             }
         }
     }
