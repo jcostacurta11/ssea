@@ -113,19 +113,20 @@ datasets = {
             "PYPL": # Axis id, shown in the selection menu
             {
                 "text": "PYPL", # Axis title, shown in the graph, LaTeX supported
-                "vec": nyse_df['PYPL'].values, # Data in numpy.array
+                "vec": nyse_df[nyse_df.symbol=="PYPL"].close.values,
+                #"vec": nyse_df['PYPL'].values, # Data in numpy.array
                 "range": (36, 45) # Plotting range; there are problems in Matplotlib automations
             },
             "MSFT":
             {
                 "text": "MSFT",
-                "vec": nyse_df['MSFT'].values,
+                "vec": nyse_df[nyse_df.symbol=="MSFT"].close.values,
                 "range": (56, 64)
             },
             "AAPL":
             {
                 "text": "AAPL",
-                "vec": nyse_df['AAPL'].values,
+                "vec": nyse_df[nyse_df.symbol=="AAPL"].close.values,
                 "range": (102, 120)
             }
         }
