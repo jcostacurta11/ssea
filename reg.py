@@ -279,25 +279,25 @@ datasets = {
             }
         }
     },
-    "ice_cream_old": # Dataset id, shown in the selection menu
-    {
-        "text": "Ice cream example from the handout", # Description, shown when selected, LaTeX now supported
-        "axes":
-        {
-            "temperature": # Axis id, shown in the selection menu
-            {
-                "text": "Temperature", # Axis title, shown in the graph, LaTeX supported
-                "vec": vec(60, 72, 67, 80), # Data in numpy.array
-                "range": (55.0, 95.0) # Range, or just "auto"
-            },
-            "cones_sold":
-            {
-                "text": "Cones sold",
-                "vec": vec(63, 76, 70, 80),
-                "range": (50.0, 100.0)
-            }
-        }
-    },
+    # "ice_cream_old": # Dataset id, shown in the selection menu
+    # {
+    #     "text": "Ice cream example from the handout", # Description, shown when selected, LaTeX now supported
+    #     "axes":
+    #     {
+    #         "temperature": # Axis id, shown in the selection menu
+    #         {
+    #             "text": "Temperature", # Axis title, shown in the graph, LaTeX supported
+    #             "vec": vec(60, 72, 67, 80), # Data in numpy.array
+    #             "range": (55.0, 95.0) # Range, or just "auto"
+    #         },
+    #         "cones_sold":
+    #         {
+    #             "text": "Cones sold",
+    #             "vec": vec(63, 76, 70, 80),
+    #             "range": (50.0, 100.0)
+    #         }
+    #     }
+    # },
     "textbook1":
     {
         "text": "Example 7.3.2 from the MATH 51 textbook",
