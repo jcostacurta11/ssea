@@ -236,10 +236,17 @@ def draw_best_fit_line(m, b):
 
 # Original regdata.py
 
+import requests
+
 import pandas as pd
 import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
+
+quartet_url = "https://raw.githubusercontent.com/jcostacurta11/ssea/main/quartet.txt"
+with open("quartet.txt", "wb") as f:
+    r = requests.get(quartet_url, allow_redirects=True)
+    f.write(r.content)
 
 # Grab datasets
 concrete_df = pd.read_csv('http://raw.githubusercontent.com/jcostacurta11/ssea/main/concrete_data_ssea.csv')
