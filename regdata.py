@@ -16,6 +16,8 @@ nyse_df = pd.read_csv('http://raw.githubusercontent.com/jcostacurta11/ssea/main/
 spotify_df = pd.read_csv('http://raw.githubusercontent.com/jcostacurta11/ssea/main/spotify_data_ssea.csv')
 nba_df = pd.read_csv('http://raw.githubusercontent.com/jcostacurta11/ssea/main/nba_data_ssea.csv')
 
+quartet = np.loadtxt("quartet.txt")
+
 datasets = {
     "ice_cream": # Dataset id, shown in the selection menu
     {
@@ -60,13 +62,13 @@ datasets = {
         "text": "Example 7.3.3 on the MATH 51 textbook",
         "axes":
         {
-            "z":
+            "x":
             {
                 "text": "x axis",
                 "vec": vec(-1.0, 0.0, 2.0, 7.0),
                 "range": (-2.0, 8.0)
             },
-            "w":
+            "y":
             {
                 "text": "y axis",
                 "vec": vec(5.0, 1.0, -3.0, -4.0),
@@ -199,5 +201,95 @@ datasets = {
                 "range": (0, 1)
             }
         }
+    },
+    "Quartet I":
+    {
+        "text": "First panel of Anscombe's quartet",
+        "axes":
+        {
+            "x":
+            {
+                "text": "$x$ axis",
+                "vec": quartet[0, :],
+                "range": "auto"
+            },
+            "y":
+            {
+                "text": "$y$ axis",
+                "vec": quartet[1, :],
+                "range": "auto"
+            },
+        }
+    },
+    "Quartet II":
+    {
+        "text": "Second panel of Anscombe's quartet",
+        "axes":
+        {
+            "x":
+            {
+                "text": "$x$ axis",
+                "vec": quartet[2, :],
+                "range": "auto"
+            },
+            "y":
+            {
+                "text": "$y$ axis",
+                "vec": quartet[3, :],
+                "range": "auto"
+            },
+        }
+    },
+    "Quartet III":
+    {
+        "text": "Third panel of Anscombe's quartet",
+        "axes":
+        {
+            "x":
+            {
+                "text": "$x$ axis",
+                "vec": quartet[4, :],
+                "range": "auto"
+            },
+            "y":
+            {
+                "text": "$y$ axis",
+                "vec": quartet[5, :],
+                "range": "auto"
+            },
+        }
+    },
+    "Quartet IV":
+    {
+        "text": "Fourth panel of Anscombe's quartet",
+        "axes":
+        {
+            "x":
+            {
+                "text": "$x$ axis",
+                "vec": quartet[6, :],
+                "range": "auto"
+            },
+            "y":
+            {
+                "text": "$y$ axis",
+                "vec": quartet[7, :],
+                "range": "auto"
+            },
+        }
     }
 }
+
+# Regularize
+for ds_name in datasets:
+    ds = datasets[ds_name]
+    for ax_name in ds["axes"]:
+        ax = ds["axes"][ax_name]
+        vec = ax["vec"]
+        ax["vec"] = np.array(vec)
+        range = ax["range"]
+        if isinstance(range, str) and range == "auto":
+            delta = 0.1
+            vmin, vmax = np.min(vec), np.max(vec)
+            range = ((1.0+delta)*vmin - delta*vmax, (1.0+delta)*vmax - delta*vmin)
+            ax["range"] = range
