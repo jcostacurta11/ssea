@@ -181,7 +181,7 @@ def get_y():
     global y
     return y
 
-def get_i():
+def get_one():
     global x
     return np.ones_like(x)
 
@@ -214,9 +214,9 @@ def print_4(m, b):
         + "{:.2f}".format(m) + " x + " + "{:.2f}".format(b) + " $"))
 
 def print_5(r2):
-    display(Markdown("$ R^2 = " + "{:.2f}".format(r2) + " $"))
+    display(Markdown("$ R^2 = " + "{:.4f}".format(r2) + " $"))
 
-def draw_best_fit_line(m, b):
+def draw_best_fit_line(m, b, m_guess=None, b_guess=None):
     with plt.ioff():
         fig = plt.figure(figsize=scatter_layout)
     fig.canvas.header_visible = False
@@ -228,6 +228,8 @@ def draw_best_fit_line(m, b):
     ax.minorticks_on()
     ax.scatter(x, y, s=scatter_size, color="black")
     ax.plot((xlim[0], xlim[1]), (m*xlim[0]+b, m*xlim[1]+b), linewidth=1.0, color="blue", label=f"$ y = {m:.2f} x + {b:.2f} $")
+    if m_guess is not None and b_guess is not None:
+        ax.plot((xlim[0], xlim[1]), (m_guess*xlim[0]+b_guess, m_guess*xlim[1]+b_guess), linewidth=1.0, color="red", label=f"$ y = {m:.2f} x + {b:.2f} $")
     ax.set_xlim(*xlim)
     ax.set_xlabel(xdata["text"])
     ax.set_ylabel(ydata["text"])
@@ -266,14 +268,33 @@ datasets = {
             "temperature": # Axis id, shown in the selection menu
             {
                 "text": "Temperature", # Axis title, shown in the graph, LaTeX supported
+                "vec": vec(60, 72, 67, 81), # Data in numpy.array
+                "range": (55.0, 95.0) # Range, or just "auto"
+            },
+            "cones_sold":
+            {
+                "text": "Cones sold",
+                "vec": vec(126, 150, 140, 160),
+                "range": (100.0, 200.0)
+            }
+        }
+    },
+    "ice_cream_old": # Dataset id, shown in the selection menu
+    {
+        "text": "Ice cream example from the handout", # Description, shown when selected, LaTeX now supported
+        "axes":
+        {
+            "temperature": # Axis id, shown in the selection menu
+            {
+                "text": "Temperature", # Axis title, shown in the graph, LaTeX supported
                 "vec": vec(60, 72, 67, 80), # Data in numpy.array
-                "range": (55.0, 90.0) # Range, or just "auto"
+                "range": (55.0, 95.0) # Range, or just "auto"
             },
             "cones_sold":
             {
                 "text": "Cones sold",
                 "vec": vec(63, 76, 70, 80),
-                "range": (55.0, 90.0)
+                "range": (50.0, 100.0)
             }
         }
     },
