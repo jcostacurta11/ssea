@@ -39,8 +39,11 @@ inside_layout = dict(height="90%", width="90%")
 grid_layout = dict(height="2.0in", width="2.0in")
 scatter_layout = (6.0, 4.0)
 
+stage = -1
+
 def select_data():
-    global dataset, xname, xdata, yname, ydata, x, y, xlim, ylim, lock_ds
+    global stage, dataset, xname, xdata, yname, ydata, x, y, xlim, ylim, lock_ds
+    stage = 0
     lock_ds = False
     dataset = default_dataset
     select_dataset = Select(
@@ -133,7 +136,7 @@ def select_data():
     def draw_sc():
         if info_sc[0] is not None:
             info_sc[0].remove()
-        info_sc[0] = ax.scatter(x, y, s=scatter_size, color="black")
+        info_sc[0] = ax.scatter(x, y, s=scatter_size, color="black", zorder=10)
         ax.set_xlabel(xdata["text"])
         ax.set_ylabel(ydata["text"])
         if xlim is not None:
@@ -198,25 +201,46 @@ def vec_to_str(vec, row=True, fmt=".2f", disp=8):
         else:
             return "\\begin{bmatrix} " + " & ".join(f"{{:{fmt}}}".format(val) for val in vec) + " \\end{bmatrix}"
 
+def print_rerun_warning():
+    display(Markdown("<span style=\"color: red;\">Warning: Something before this cell was changed. Please rerun the cells one by one from the cell right after data selection.</span>"))
+
 def print_1(x, y, i):
+    global stage
+    stage = 1
     display(Markdown("$ \\mathbf{X} = " + vec_to_str(x) + " $, $ \\mathbf{Y} = " + vec_to_str(y) + " $, $ \\mathbf{1} = " + vec_to_str(i) + " $"))
 
 def print_2(c, xh):
+    global stage
+    if stage <= 0:
+        print_rerun_warning()
+    stage = 2
     display(Markdown("$ c = " + "{:.2f}".format(c) + " $, and $ \\widehat{\\mathbf{X}} = \\mathbf{X} - \\mathbf{Proj}_{\\mathbf{1}} \\mathbf{X} = \\mathbf{X} - c \\mathbf{1} = " + vec_to_str(xh) + " $"))
 
 def print_3(d, e):
+    global stage
+    if stage <= 1:
+        print_rerun_warning()
+    stage = 3
     display(Markdown("$ \\mathbf{Proj}_{W} \\mathbf{Y} = d \\widehat{\\mathbf{X}} + e \\mathbf{1} $ where $ d = " + "{:.2f}".format(d) + " $ and $ e = " + "{:.2f}".format(e) + " $"))
 
 def print_4(m, b):
+    global stage
+    if stage <= 2:
+        print_rerun_warning()
+    stage = 4
     display(Markdown(
     "$ \\mathbf{Proj}_W \\mathbf{Y} = m \\mathbf{X} + b \\mathbf{1} $ where $ m = " + "{:.2f}".format(m) + " $ and $ b = "
         + "{:.2f}".format(b) + " $, so the best fit line is $ y = "
         + "{:.2f}".format(m) + " x + " + "{:.2f}".format(b) + " $"))
 
-def print_5(r2):
-    display(Markdown("$ R^2 = " + "{:.4f}".format(r2) + " $"))
+# def print_5(r2):
+#     display(Markdown("$ R^2 = " + "{:.4f}".format(r2) + " $"))
 
 def draw_best_fit_line(m, b, m_guess=None, b_guess=None):
+    global stage
+    if stage <= 3:
+        print_rerun_warning()
+    stage = 5
     with plt.ioff():
         fig = plt.figure(figsize=scatter_layout)
     fig.canvas.header_visible = False
