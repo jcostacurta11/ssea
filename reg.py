@@ -207,7 +207,7 @@ def print_rerun_warning():
 def print_1(x, y, i):
     global stage
     stage = 1
-    display(Markdown("$ \\mathbf{X} = " + vec_to_str(x) + " $, $ \\mathbf{Y} = " + vec_to_str(y) + " $, $ \\mathbf{1} = " + vec_to_str(i) + " $"))
+    display(HTML("$ \\mathbf{X} = " + vec_to_str(x) + " $, $ \\mathbf{Y} = " + vec_to_str(y) + " $, $ \\mathbf{1} = " + vec_to_str(i) + " $"))
 
 def print_2(c, xh):
     global stage
