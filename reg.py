@@ -202,12 +202,12 @@ def vec_to_str(vec, row=True, fmt=".2f", disp=8):
             return "\\begin{bmatrix} " + " & ".join(f"{{:{fmt}}}".format(val) for val in vec) + " \\end{bmatrix}"
 
 def print_rerun_warning():
-    display(Markdown("<span style=\"color: red;\">Warning: Something before this cell was changed. Please rerun the cells one by one from the cell right after data selection.</span>"))
+    display(HTML("<span style=\"color: red;\">Warning: Something before this cell was changed. Please rerun the cells one by one from the cell right after data selection.</span>"))
 
 def print_1(x, y, i):
     global stage
     stage = 1
-    display(HTML("$ \\mathbf{X} = " + vec_to_str(x) + " $, $ \\mathbf{Y} = " + vec_to_str(y) + " $, $ \\mathbf{1} = " + vec_to_str(i) + " $"))
+    display(Markdown("$ \\mathbf{X} = " + vec_to_str(x) + " $, $ \\mathbf{Y} = " + vec_to_str(y) + " $, $ \\mathbf{1} = " + vec_to_str(i) + " $"))
 
 def print_2(c, xh):
     global stage
