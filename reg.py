@@ -253,8 +253,35 @@ def draw_best_fit_line(m, b, m_guess=None, b_guess=None):
     ax.scatter(x, y, s=scatter_size, color="black")
     ax.plot((xlim[0], xlim[1]), (m*xlim[0]+b, m*xlim[1]+b), linewidth=1.0, color="blue", label=f"$ y = {m:.2f} x + {b:.2f} $")
     if m_guess is not None and b_guess is not None:
-        ax.plot((xlim[0], xlim[1]), (m_guess*xlim[0]+b_guess, m_guess*xlim[1]+b_guess), linewidth=1.0, color="red", label=f"$ y = {m:.2f} x + {b:.2f} $")
+        ax.plot((xlim[0], xlim[1]), (m_guess*xlim[0]+b_guess, m_guess*xlim[1]+b_guess), linewidth=1.0, color="red", label=f"$ y = {m_guess:.2f} x + {b_guess:.2f} $")
     ax.set_xlim(*xlim)
+    ax.set_ylim(*ylim)
+    ax.set_xlabel(xdata["text"])
+    ax.set_ylabel(ydata["text"])
+    ax.legend()
+    plt.show()
+
+def draw_best_fit_quadratic(a, b, c, a_guess=None, b_guess=None, c_guess=None):
+    global stage
+    if stage <= 3:
+        print_rerun_warning()
+    stage = 5
+    with plt.ioff():
+        fig = plt.figure(figsize=scatter_layout)
+    fig.canvas.header_visible = False
+    fig.canvas.footer_visible = False
+    ax = fig.add_subplot(1, 1, 1)
+    ax.set_clip_on(True)
+    ax.grid(visible=True, which="major", linewidth=0.5)
+    ax.grid(visible=True, which="minor", linewidth=0.5, linestyle=":")
+    ax.minorticks_on()
+    ax.scatter(x, y, s=scatter_size, color="black")
+    xds = np.linspace(xlim[0], xlim[1], 100)
+    ax.plot(xds, a + b*xds + c*xds**2, linewidth=1.0, color="green", label=f"$ y = {a:.2f} + {b:.2f} x + {c:.2f} x^2 $")
+    if a_guess is not None and b_guess is not None and c_guess is not None:
+        ax.plot(xds, a_guess + b_guess*xds + c_guess*xds**2, linewidth=1.0, color="red", label=f"$ y = {a_guess:.2f} + {b_guess:.2f} x + {c_guess:.2f} x^2 $")
+    ax.set_xlim(*xlim)
+    ax.set_ylim(*ylim)
     ax.set_xlabel(xdata["text"])
     ax.set_ylabel(ydata["text"])
     ax.legend()
