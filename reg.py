@@ -23,8 +23,6 @@ from IPython.display import display, Latex, Markdown
 import ipywidgets as widgets
 from ipywidgets import Select, Label, HTML, Layout
 
-import matplotlib.pyplot as plt
-
 # Use the widget manager from Google Colab
 try:
     import google.colab
@@ -32,6 +30,8 @@ try:
     output.enable_custom_widget_manager()
 except:
     pass
+
+import matplotlib.pyplot as plt
 
 default_dataset = "ice_cream"
 scatter_size = 8.333
