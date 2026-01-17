@@ -1,5 +1,13 @@
 # Original reg.py
 
+# Use the widget manager from Google Colab
+try:
+    import google.colab
+    from google.colab import output
+    output.enable_custom_widget_manager()
+except:
+    pass
+
 from IPython import get_ipython
 ipython = get_ipython()
 ipython.magic("matplotlib widget")
@@ -22,14 +30,6 @@ from IPython.display import display, Latex, Markdown
 
 import ipywidgets as widgets
 from ipywidgets import Select, Label, HTML, Layout
-
-# Use the widget manager from Google Colab
-try:
-    import google.colab
-    from google.colab import output
-    output.enable_custom_widget_manager()
-except:
-    pass
 
 import matplotlib.pyplot as plt
 
